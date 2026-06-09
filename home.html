@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Website</title>
+
+    <style>
+
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body{
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav{
+            background-color: #333;
+            padding: 15px;
+        }
+
+        nav ul{
+            list-style: none;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li{
+            margin: 0 20px;
+        }
+
+        nav ul li a{
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav ul li a:hover{
+            color: gold;
+        }
+
+        /* Hero Section */
+        .hero{
+            height: 400px;
+            background-image: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero h1{
+            color: white;
+            background-color: rgba(0,0,0,0.6);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        /* Full Width Introduction Section */
+        .intro{
+            padding: 50px;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+
+        .intro h2{
+            margin-bottom: 20px;
+        }
+
+        .intro p{
+            max-width: 1000px;
+            margin: auto;
+            font-size: 18px;
+        }
+
+        /* Three Column Section */
+        .content{
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+        }
+
+        .column{
+            flex: 1;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 5px lightgray;
+        }
+
+        .column h3{
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer{
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* Responsive Design */
+        @media(max-width: 768px){
+
+            nav ul{
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li{
+                margin: 10px 0;
+            }
+
+            .content{
+                flex-direction: column;
+            }
+
+            .hero h1{
+                font-size: 24px;
+            }
+
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Gallery</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Welcome to My Website</h1>
+    </section>
+
+    <!-- Full Width Paragraph -->
+    <section class="intro">
+        <h2>About Our Website</h2>
+        <p>
+            Welcome to our website. We are committed to providing high-quality
+            services and valuable information to our visitors. Our platform is
+            designed to offer an engaging user experience while helping users
+            discover useful resources, learn new skills, and stay connected with
+            the latest developments in technology and innovation. We believe in
+            excellence, professionalism, and continuous improvement in everything
+            we do.
+        </p>
+    </section>
+
+    <!-- Three Columns -->
+    <section class="content">
+
+        <div class="column">
+            <h3>Web Development</h3>
+            <p>
+                Learn how to build modern websites using HTML, CSS, JavaScript,
+                and various web frameworks. Create responsive and interactive
+                user experiences for different devices.
+            </p>
+        </div>
+
+        <div class="column">
+            <h3>Mobile Development</h3>
+            <p>
+                Explore Android and cross-platform development techniques.
+                Build mobile applications that solve real-world problems and
+                provide value to users.
+            </p>
+        </div>
+
+        <div class="column">
+            <h3>Cloud & DevOps</h3>
+            <p>
+                Discover cloud computing, automation, CI/CD pipelines,
+                containerization, and infrastructure management practices used
+                in modern software development.
+            </p>
+        </div>
+
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 My Website. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>

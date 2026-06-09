@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <style>
+        nav{
+            background-color: brown;
+            padding: 15px;
+        }
+        nav ul{
+                list-style: none;
+                display: flex;
+                justify-content: center;
+        }
+        nav ul li{
+                margin: 0 20px;
+        }
+        nav ul li a{
+            text-decoration: none;
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        nav ul li a:hover{
+            color: gold;
+        }
+
+        .hero{
+            height: 400px;
+            background-image: url('https://plus.unsplash.com/premium_photo-1676998931123-75789162f170?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        .content{
+            display: flex;
+            gap: 20px;
+            padding: 40px;
+        }
+        .column{
+            background-color: bisque;
+            padding: 20px;
+
+        }
+        footer{
+            background-color: brown;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="">Home</a></li>
+            <li><a href="">About</a></li>
+            <li><a href="">Services</a></li>
+            <li><a href="">Gallery</a></li>
+            <li><a href="">Contact</a></li>
+        </ul>
+    </nav>
+    <section class="hero">
+        <h1>Welcome to My Website</h1>
+    </section>
+    <section class="content">
+        <div class="column">
+        <h3>Web Development</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem omnis libero sed labore iure, minus ea tenetur ut quo facilis, eos non est id quibusdam delectus excepturi tempore autem incidunt. Quae unde nostrum sunt odit sequi? Blanditiis, sequi? Ratione, nesciunt.</p>
+        </div>
+        <div class="column">
+        <h3>Mobile Development</h3>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Culpa eum est perferendis optio odit doloribus, magnam tenetur! Adipisci nulla fugit autem pariatur, molestias ut consequuntur dignissimos accusantium culpa rerum aspernatur voluptatum consectetur voluptas itaque quas, voluptates possimus commodi unde quia.</p>
+        </div>
+        <div class="column">
+        <h3>Cloud and DevOps</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae dolore ratione dignissimos, magni, optio laudantium perspiciatis, laboriosam voluptatem unde facere assumenda corrupti et consequuntur ipsam aspernatur fuga nemo. Voluptate quae dolorum reprehenderit reiciendis molestias architecto sunt unde sequi alias. Illo.</p>
+         </div>   
+    </section>
+    <footer>
+        <p>&copy; 2026. All Rights Reserved</p>
+    </footer>
+</body>
+</html>

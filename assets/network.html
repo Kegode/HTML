@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Networking Fundamentals - Week 2 Presentation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #1a1a2e;
+            color: #333;
+        }
+
+        /* Slide container */
+        .slide {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 80px;
+            background: white;
+            border-bottom: 5px solid #0f4c81;
+            page-break-after: always;
+            break-after: page;
+        }
+
+        .slide-content {
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        /* Title slide */
+        .title-slide {
+            background: linear-gradient(135deg, #0f4c81 0%, #1a73e8 100%);
+            color: white;
+            text-align: center;
+        }
+
+        .title-slide h1 {
+            font-size: 64px;
+            margin-bottom: 20px;
+        }
+
+        .title-slide h3 {
+            font-size: 28px;
+            font-weight: normal;
+            margin-top: 20px;
+        }
+
+        /* Headings */
+        h1 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            color: #0f4c81;
+        }
+
+        .title-slide h1 {
+            color: white;
+        }
+
+        h2 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            color: #0f4c81;
+            border-left: 5px solid #1a73e8;
+            padding-left: 20px;
+        }
+
+        h3 {
+            font-size: 24px;
+            margin: 20px 0 15px 0;
+            color: #1a73e8;
+        }
+
+        /* Lists */
+        ul, .grid-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        li {
+            margin-bottom: 12px;
+            font-size: 20px;
+            line-height: 1.5;
+            padding-left: 28px;
+            position: relative;
+        }
+
+        li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1a73e8;
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        /* Two column layout */
+        .two-columns {
+            display: flex;
+            gap: 40px;
+            margin: 30px 0;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        /* Table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 18px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #0f4c81;
+            color: white;
+        }
+
+        tr:nth-child(even) {
+            background: #f2f2f2;
+        }
+
+        /* Image placeholder */
+        .img-placeholder {
+            background: linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%);
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            margin: 30px 0;
+            border: 2px dashed #1a73e8;
+            font-size: 18px;
+            color: #1a73e8;
+            font-weight: bold;
+        }
+
+        .img-placeholder::before {
+            content: "🖼️ ";
+            font-size: 32px;
+        }
+
+        /* Code/command blocks */
+        .code-block {
+            background: #1e1e2e;
+            color: #c9d1d9;
+            padding: 16px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+
+        /* Speaker notes (hidden in presentation, visible when printed) */
+        .speaker-notes {
+            background: #fef9e3;
+            border-left: 4px solid #f5a623;
+            padding: 15px 20px;
+            margin-top: 40px;
+            font-size: 14px;
+            color: #666;
+            border-radius: 8px;
+        }
+
+        .speaker-notes strong {
+            color: #333;
+        }
+
+        /* Page number */
+        .page-number {
+            text-align: right;
+            font-size: 12px;
+            color: #999;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        /* Print styles - hides speaker notes by default, but can show */
+        @media print {
+            .speaker-notes {
+                background: none;
+                border-left: 2px solid #ccc;
+                color: #666;
+                font-size: 10px;
+            }
+            .slide {
+                padding: 40px;
+                border-bottom: none;
+                page-break-after: always;
+            }
+            .img-placeholder {
+                background: #f0f0f0;
+                border: 1px solid #ccc;
+            }
+        }
+
+        /* Badge / highlight */
+        .badge {
+            background: #1a73e8;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 14px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        /* Status code boxes */
+        .status-codes {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+        .status {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 15px 20px;
+            text-align: center;
+            flex: 1;
+            font-weight: bold;
+        }
+        .status .code {
+            font-size: 28px;
+            color: #0f4c81;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #1a1a2e;
+            color: white;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SLIDE 1: Title -->
+    <div class="slide title-slide">
+        <div class="slide-content">
+            <h1>Fundamentals of Networking</h1>
+            <h3>Week 2 – Networking Protocols & Foundations</h3>
+            <p style="margin-top: 50px; font-size: 18px;">Course: Networking & Operating Systems</p>
+        </div>
+        <div class="page-number">1 / 30</div>
+    </div>
+
+    <!-- SLIDE 2: Agenda -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Today's Agenda</h2>
+            <ul>
+                <li>Types of Networks (LAN, WAN, MAN, PAN)</li>
+                <li>TCP/IP Protocol Suite</li>
+                <li>OSI Model (7 Layers)</li>
+                <li>IP Addresses (IPv4 & IPv6)</li>
+                <li>DNS – Domain Name System</li>
+                <li>HTTP & HTTPS</li>
+                <li>TCP vs UDP</li>
+            </ul>
+            <div class="img-placeholder">📋 Roadmap graphic / checklist visual</div>
+                    </div>
+        <div class="page-number">2 / 30</div>
+    </div>
+
+    <!-- SLIDE 3: What is a Network? -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>What is a Network?</h2>
+            <ul>
+                <li>Two or more devices connected to share resources</li>
+                <li>Examples: internet, office LAN, home Wi-Fi</li>
+                <li>Key benefits: file sharing, communication, central management</li>
+            </ul>
+            <div class="img-placeholder">🌐 Two computers connected with a cable and cloud icon for "internet"</div>
+            
+        </div>
+        <div class="page-number">3 / 30</div>
+    </div>
+
+    <!-- SLIDE 4: LAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>LAN – Local Area Network</h2>
+            <div class="badge">Small & Fast</div>
+            <ul>
+                <li>Limited area: home, school, office building</li>
+                <li>High speed (1–10 Gbps)</li>
+                <li>Privately owned</li>
+                <li>Low latency</li>
+            </ul>
+            <div class="img-placeholder">🏢 Diagram of a small office with PCs, printer, switch, and router</div>
+            
+        </div>
+        <div class="page-number">4 / 30</div>
+    </div>
+
+    <!-- SLIDE 5: WAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>WAN – Wide Area Network</h2>
+            <div class="badge">Large & Global</div>
+            <ul>
+                <li>Spans cities, countries, continents</li>
+                <li>Internet = largest WAN</li>
+                <li>Slower than LAN due to distance</li>
+                <li>Uses leased lines or satellite links</li>
+            </ul>
+            <div class="img-placeholder">🗺️ World map with lines connecting cities (New York → London → Tokyo)</div>
+            
+        </div>
+        <div class="page-number">5 / 30</div>
+    </div>
+
+    <!-- SLIDE 6: MAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>MAN – Metropolitan Area Network</h2>
+            <div class="badge">City or Campus</div>
+            <ul>
+                <li>Covers a city or large university campus</li>
+                <li>Larger than LAN, smaller than WAN</li>
+                <li>Often owned by a single organization or ISP</li>
+            </ul>
+            <div class="img-placeholder">🏙️ City skyline with fiber optic rings connecting buildings</div>
+            
+        </div>
+        <div class="page-number">6 / 30</div>
+    </div>
+
+    <!-- SLIDE 7: PAN -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>PAN – Personal Area Network</h2>
+            <div class="badge">Very Short Range</div>
+            <ul>
+                <li>Around a single person (few meters)</li>
+                <li>Examples: Bluetooth headset, phone ↔ laptop, USB</li>
+                <li>Low power, low cost</li>
+            </ul>
+            <div class="img-placeholder">👤 Person with smartphone, smartwatch, wireless earbuds, and laptop all connected wirelessly</div>
+            
+        </div>
+        <div class="page-number">7 / 30</div>
+    </div>
+
+    <!-- SLIDE 8: Topologies -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Network Topologies Overview</h2>
+            <ul>
+                <li>Star: All devices to central switch</li>
+                <li>Bus: Single cable backbone</li>
+                <li>Ring: Each device to two others</li>
+                <li>Mesh: Fully or partially interconnected</li>
+            </ul>
+            <div class="img-placeholder">⭐ Diagrams of star, bus, ring, and mesh topologies side by side</div>
+            
+        </div>
+        <div class="page-number">8 / 30</div>
+    </div>
+
+    <!-- SLIDE 9: TCP/IP Model -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>TCP/IP Model – 4 Layers</h2>
+            <div class="img-placeholder">📊 Vertical stack diagram with 4 labeled layers and example protocols (Application, Transport, Internet, Network Access)</div>
+            <ul>
+                <li><strong>Application</strong> – HTTP, DNS, SMTP</li>
+                <li><strong>Transport</strong> – TCP, UDP</li>
+                <li><strong>Internet</strong> – IP, routing</li>
+                <li><strong>Network Access</strong> – Ethernet, Wi-Fi</li>
+            </ul>
+            
+        </div>
+        <div class="page-number">9 / 30</div>
+    </div>
+
+    <!-- SLIDE 10: TCP/IP vs OSI -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>TCP/IP vs OSI Model</h2>
+            <ul>
+                <li>OSI: 7 layers (theoretical, teaching)</li>
+                <li>TCP/IP: 4 layers (practical, internet)</li>
+                <li>Both describe data flow but differ in granularity</li>
+            </ul>
+            <div class="img-placeholder">🔄 Side-by-side layer diagrams with arrows showing mapping between layers</div>
+            
+        </div>
+        <div class="page-number">10 / 30</div>
+    </div>
+
+    <!-- SLIDE 11: OSI Layers 7-4 -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>OSI Upper Layers (7–4)</h2>
+            <ul>
+                <li><strong>L7 Application:</strong> User apps (HTTP, FTP)</li>
+                <li><strong>L6 Presentation:</strong> Encryption, compression</li>
+                <li><strong>L5 Session:</strong> Manages connections</li>
+                <li><strong>L4 Transport:</strong> Reliable delivery, TCP/UDP</li>
+            </ul>
+            <div class="img-placeholder">📚 7-layer pyramid with top 4 layers highlighted</div>
+            
+        </div>
+        <div class="page-number">11 / 30</div>
+    </div>
+
+    <!-- SLIDE 12: OSI Layers 3-1 -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>OSI Lower Layers (3–1)</h2>
+            <ul>
+                <li><strong>L3 Network:</strong> IP addressing, routing</li>
+                <li><strong>L2 Data Link:</strong> MAC addresses, switches, frames</li>
+                <li><strong>L1 Physical:</strong> Cables, Wi-Fi, bits</li>
+            </ul>
+            <div class="img-placeholder">🔌 7-layer pyramid with bottom 3 layers highlighted</div>
+            
+        </div>
+        <div class="page-number">12 / 30</div>
+    </div>
+
+    <!-- SLIDE 13: Encapsulation -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Data Encapsulation</h2>
+            <ul>
+                <li>Data → Segment → Packet → Frame → Bits</li>
+                <li>Each layer adds its own header</li>
+                <li>Opposite process at receiving end (de-encapsulation)</li>
+            </ul>
+            <div class="img-placeholder">📨 Diagram showing a letter being placed into envelopes (headers) at each layer</div>
+            
+        </div>
+        <div class="page-number">13 / 30</div>
+    </div>
+
+    <!-- SLIDE 14: IPv4 Format -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>IPv4 Address Format</h2>
+            <ul>
+                <li>32-bit address → 4 octets (0–255 each)</li>
+                <li>Example: 192.168.1.1</li>
+                <li>~4.3 billion unique addresses</li>
+            </ul>
+            <div class="img-placeholder">🔢 32 binary digits split into 4 groups of 8 bits, shown as decimal numbers</div>
+            
+        </div>
+        <div class="page-number">14 / 30</div>
+    </div>
+
+    <!-- SLIDE 15: IPv4 Classes -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>IPv4 Address Classes</h2>
+            <table>
+                <thead>
+                    <tr><th>Class</th><th>Range</th><th>Use</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>A</td><td>1–126</td><td>Large networks</td></tr>
+                    <tr><td>B</td><td>128–191</td><td>Medium networks</td></tr>
+                    <tr><td>C</td><td>192–223</td><td>Small/home networks</td></tr>
+                    <tr><td>D</td><td>224–239</td><td>Multicast</td></tr>
+                    <tr><td>E</td><td>240–255</td><td>Reserved</td></tr>
+                </tbody>
+            </table>
+            <div class="img-placeholder">📋 Table with Class, First Octet Range, Default Subnet Mask</div>
+
+        </div>
+        <div class="page-number">15 / 30</div>
+    </div>
+
+    <!-- SLIDE 16: Public vs Private -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Public vs Private IP Addresses</h2>
+            <ul>
+                <li><strong>Public:</strong> Unique on internet, assigned by ISP</li>
+                <li><strong>Private:</strong> For internal networks (192.168.x.x, 10.x.x.x, 172.16.x.x)</li>
+                <li>NAT translates private → public</li>
+            </ul>
+            <div class="img-placeholder">🏠 House with internal devices using private IPs and a router with a single public IP to the cloud</div>
+
+        </div>
+        <div class="page-number">16 / 30</div>
+    </div>
+
+    <!-- SLIDE 17: IPv6 -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>IPv6 – The Future</h2>
+            <ul>
+                <li>128-bit → 340 undecillion addresses</li>
+                <li>Example: 2001:0db8:85a3::8a2e:0370:7334</li>
+                <li>No NAT needed, built-in security</li>
+                <li>Hexadecimal notation</li>
+            </ul>
+            <div class="img-placeholder">🔢 IPv6 address example in hex, next to huge number "340 undecillion"</div>
+            
+        </div>
+        <div class="page-number">17 / 30</div>
+    </div>
+
+    <!-- SLIDE 18: IPv4 vs IPv6 -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>IPv4 vs IPv6 Comparison</h2>
+            <table>
+                <tr><th>Feature</th><th>IPv4</th><th>IPv6</th></tr>
+                <tr><td>Address length</td><td>32-bit</td><td>128-bit</td></tr>
+                <tr><td>Format</td><td>Decimal</td><td>Hexadecimal</td></tr>
+                <tr><td>Security</td><td>Optional</td><td>Built-in IPsec</td></tr>
+                <tr><td>Configuration</td><td>DHCP</td><td>SLAAC autoconfig</td></tr>
+            </table>
+            <div class="img-placeholder">📊 Two-column comparison chart</div>
+
+        </div>
+        <div class="page-number">18 / 30</div>
+    </div>
+
+    <!-- SLIDE 19: DNS -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>DNS – Domain Name System</h2>
+            <div class="badge">The Internet's Phonebook</div>
+            <ul>
+                <li>Translates names (google.com) → IPs (142.250.190.46)</li>
+                <li>Distributed database (no single point of failure)</li>
+                <li>Makes internet human-friendly</li>
+            </ul>
+            <div class="img-placeholder">📞 Smartphone contacts list next to a server labeled "DNS"</div>
+
+        </div>
+        <div class="page-number">19 / 30</div>
+    </div>
+
+    <!-- SLIDE 20: DNS Resolution -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>How DNS Works – Step by Step</h2>
+            <ol>
+                <li>User types www.google.com</li>
+                <li>DNS Resolver checks local cache</li>
+                <li>Queries Root Server</li>
+                <li>Queries TLD Server (.com)</li>
+                <li>Queries Authoritative Server</li>
+                <li>Returns IP address</li>
+                <li>Browser connects</li>
+            </ol>
+            <div class="img-placeholder">📊 Flowchart with 7 steps and server icons (Root, TLD, Authoritative)</div>
+            
+        </div>
+        <div class="page-number">20 / 30</div>
+    </div>
+
+    <!-- SLIDE 21: DNS Hierarchy -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>DNS Tree Structure</h2>
+            <ul>
+                <li>Root (.)</li>
+                <li>TLDs (.com, .org, .uk)</li>
+                <li>Domains (google.com)</li>
+                <li>Subdomains (mail.google.com)</li>
+            </ul>
+            <div class="img-placeholder">🌳 Inverted tree diagram showing root at top, branching down to TLDs, domains, subdomains</div>
+
+        </div>
+        <div class="page-number">21 / 30</div>
+    </div>
+
+    <!-- SLIDE 22: HTTP/HTTPS -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>HTTP & HTTPS Basics</h2>
+            <ul>
+                <li>HTTP transfers web pages (port 80)</li>
+                <li>HTTPS = HTTP + SSL/TLS encryption (port 443)</li>
+                <li>Methods: GET, POST, PUT, DELETE</li>
+            </ul>
+            <div class="img-placeholder">🔒 Browser address bar showing http:// (unlocked) vs https:// (locked padlock)</div>
+            
+        </div>
+        <div class="page-number">22 / 30</div>
+    </div>
+
+    <!-- SLIDE 23: HTTP Status Codes -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Common HTTP Status Codes</h2>
+            <div class="status-codes">
+                <div class="status"><div class="code">200 OK</div><div>Success</div></div>
+                <div class="status"><div class="code">301</div><div>Redirect</div></div>
+                <div class="status"><div class="code">404</div><div>Not Found</div></div>
+                <div class="status"><div class="code">500</div><div>Server Error</div></div>
+            </div>
+            <div class="img-placeholder">🌐 Browser window showing each error code with simple icons</div>
+
+        </div>
+        <div class="page-number">23 / 30</div>
+    </div>
+
+    <!-- SLIDE 24: TCP -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>TCP – Transmission Control Protocol</h2>
+            <div class="badge">Reliable & Ordered</div>
+            <ul>
+                <li>Connection-oriented (3-way handshake)</li>
+                <li>Guaranteed delivery (ACKs)</li>
+                <li>Data arrives in order</li>
+                <li>Error checking & correction</li>
+                <li>Flow control (window size)</li>
+                <li>Slower due to overhead</li>
+            </ul>
+            <div class="img-placeholder">🤝 Two computers shaking hands (3-way handshake) with checkmark icon</div>
+            
+        </div>
+        <div class="page-number">24 / 30</div>
+    </div>
+
+    <!-- SLIDE 25: UDP -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>UDP – User Datagram Protocol</h2>
+            <div class="badge">Fast & Simple</div>
+            <ul>
+                <li>Connectionless (no handshake)</li>
+                <li>No delivery guarantee</li>
+                <li>Order not guaranteed</li>
+                <li>Minimal error checking</li>
+                <li>No flow control</li>
+                <li>Faster, low overhead</li>
+            </ul>
+            <div class="img-placeholder">🚀 Rocket ship next to a packet being sent without confirmation</div>
+
+        </div>
+        <div class="page-number">25 / 30</div>
+    </div>
+
+    <!-- SLIDE 26: TCP vs UDP Table -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>TCP vs UDP – Feature Comparison</h2>
+            <table>
+                <tr><th>Feature</th><th>TCP</th><th>UDP</th></tr>
+                <tr><td>Connection</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Reliability</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Ordering</td><td>Yes</td><td>No</td></tr>
+                <tr><td>Speed</td><td>Slower</td><td>Faster</td></tr>
+                <tr><td>Use cases</td><td>Web, email, FTP</td><td>Gaming, VoIP, DNS</td></tr>
+            </table>
+            
+        </div>
+        <div class="page-number">26 / 30</div>
+    </div>
+
+    <!-- SLIDE 27: TCP Examples -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Where TCP Is Used</h2>
+            <ul>
+                <li>Web browsing (HTTP/HTTPS)</li>
+                <li>Email (SMTP, IMAP, POP3)</li>
+                <li>File transfer (FTP, SFTP)</li>
+                <li>Secure shell (SSH)</li>
+            </ul>
+            <div class="img-placeholder">🌐 Icons for browser, email envelope, file folder, command line</div>
+
+        </div>
+        <div class="page-number">27 / 30</div>
+    </div>
+
+    <!-- SLIDE 28: UDP Examples -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Where UDP Is Used</h2>
+            <ul>
+                <li>Live video streaming (YouTube, Twitch)</li>
+                <li>Voice over IP (Zoom, Skype)</li>
+                <li>Online gaming (real-time action)</li>
+                <li>DNS queries (quick lookups)</li>
+            </ul>
+            <div class="img-placeholder">🎮 Icons for video camera, phone call, game controller, magnifying glass</div>
+            
+        </div>
+        <div class="page-number">28 / 30</div>
+    </div>
+
+    <!-- SLIDE 29: Summary -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Week 2 Networking Summary</h2>
+            <ul>
+                <li>Networks range from PAN (personal) to WAN (global)</li>
+                <li>TCP/IP (4 layers) and OSI (7 layers) model data flow</li>
+                <li>IP addresses uniquely identify devices (IPv4 and IPv6)</li>
+                <li>DNS translates human names to IPs</li>
+                <li>HTTP/HTTPS powers the web</li>
+                <li>TCP = reliable & slow, UDP = fast & simple</li>
+            </ul>
+            <div class="img-placeholder">📌 Summary infographic with icons for each key point</div>
+
+        </div>
+        <div class="page-number">29 / 30</div>
+    </div>
+
+    <!-- SLIDE 30: Q&A / Next Steps -->
+    <div class="slide">
+        <div class="slide-content">
+            <h2>Questions? What's Next?</h2>
+            <ul>
+                <li>Next week: Routing & Switching Basics</li>
+                <li>Hands-on practice:</li>
+            </ul>
+            <div class="code-block">
+                ipconfig (Windows) or ifconfig (Linux)<br>
+                ping google.com<br>
+                tracert google.com (Windows) / traceroute (Linux/Mac)
+            </div>
+            <div class="img-placeholder">❓ Q&A icon and "What's next?" road sign with networking tools listed</div>
+            
+        </div>
+        <div class="page-number">30 / 30</div>
+    </div>
+
+    <footer>
+        Networking Fundamentals – Week 2 | Course Materials
+    </footer>
+</body>
+</html>
